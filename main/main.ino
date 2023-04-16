@@ -46,8 +46,35 @@ void setup() {
   pwm.setOscillatorFrequency(27000000);
 
   pwm.setPWMFreq(SERVO_FREQ);
+
+  // set every servo in it's starting position
+  for (uint8_t i = 0; i < 8; i++) {
+    pwm.setPWM(i, 0, STARTPOS[i]);
+  }
 }
 
 void loop() {
+  for (uint8_t i = 0; i < 4; i++) {
+    pwm.setPWM(i, 0, STOPPOS[i]);
+  }
 
+  delay(500);
+
+  for (uint8_t i = 4; i < 8; i++) {
+    pwm.setPWM(i, 0, STOPPOS[i]);
+  }
+
+  delay(500);
+
+  for (uint8_t i = 0; i < 4; i++) {
+    pwm.setPWM(i, 0, STARTPOS[i]);
+  }
+
+  delay(500);
+
+  for (uint8_t i = 4; i < 8; i++) {
+    pwm.setPWM(i, 0, STARTPOS[i]);
+  }
+
+  delay(500);
 }
